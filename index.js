@@ -12,7 +12,6 @@ const generate = function() {
         let inputText = document.getElementById('input').value;
         let separator = document.getElementById('separator').value;
         inputText = inputText.replaceAll('"', temp);
-        console.log(inputText);
         let csv = $.csv.toArrays(inputText, {'separator': getSeparatorChar(separator)});
         let generatedLyrics = [];
         csv.forEach((row, i) => {
