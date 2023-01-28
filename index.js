@@ -1,4 +1,6 @@
 'use strict';
+let temp = '%22';
+
 const copy = function() {
     let copyText = document.getElementById('output');
     copyText.select();
@@ -9,13 +11,15 @@ const generate = function() {
     try {
         let inputText = document.getElementById('input').value;
         let separator = document.getElementById('separator').value;
+        inputText = inputText.replaceAll('"', temp);
+        console.log(inputText);
         let csv = $.csv.toArrays(inputText, {'separator': getSeparatorChar(separator)});
         let generatedLyrics = [];
         csv.forEach((row, i) => {
             if (!row[1]) throw new Error('row ' + i + ' has no lyrics');
             let beat = parseFloat(row[0]);
             if (!beat && beat !== 0) throw new Error('row ' + i + ' beat is not a number');
-            generatedLyrics.push({ "bar": beat, "text": row[1] });
+            generatedLyrics.push({ "bar": beat, "text": row[1].replaceAll(temp, '\"') });
         });
         let copyText = document.getElementById('output');
         copyText.innerHTML = JSON.stringify(generatedLyrics);
