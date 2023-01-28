@@ -1,1 +1,56 @@
-test
+<html>
+<head>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/1.0.21/jquery.csv.min.js"></script>
+    <script src="index.js"></script>
+</head>
+<body>
+    <div class="container">
+        <br/>
+        <h2>Trombone Champ Lyric Editor</h2>
+        <div class="row">
+            Lyrics: <textarea id="input" class="u-full-width"></textarea>
+        </div>
+        <div class="row">
+            Separator: <select id="separator" class="u-full-width">
+                <option value="tab">Tab</option>
+                <option value="comma">Comma (,)</option>
+                <option value="space">Space ( )</option>
+                <option value="colon">Colon (:)</option>
+                <option value="pipe">Pipe (|)</option>
+            </select>
+        </div>
+        <div class="row">
+            <button id="generate" class="button-primary" type="submit" onclick="generate()"> Generate</button>
+        </div>
+        <hr />
+        <div class="row">
+            <b>Generated lyrics:</b>
+            <button id="copy" class="fa fa-regular fa-copy" onclick="copy()"></button>
+            <span id="message"></span>
+        </div>
+        <div class="row">
+            <textarea id="output" class="u-full-width" disabled></textarea>
+        </div>
+        <hr />
+        <div class="row">
+            <b>Instructions:</b>
+        </div>
+        <div class="row">
+            Input expects delimiter-separated values of beat:lyric. For example:
+        </div>
+        <div class="row">
+            <pre><code>35.5	We're
+36	no
+36.5	stran-
+37	gers</code></pre> turns into
+            <pre><code>[{"bar":35.5,"text":"We're"},{"bar":36,"text":"no"},{"bar":36.5,"text":"stran-"},{"bar":37,"text":"gers"}]</code></pre>
+        </div>
+        <div class="row">
+            The lyrics in the <code>song.tmb</code> should look like <code>"lyrics":[{"bar":35.5,"text":"We're"},...]</code>
+        </div>
+    </div>
+</body>
+</html>
